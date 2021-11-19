@@ -1,0 +1,17 @@
+import psutil
+import time
+
+if __name__ == '__main__':
+    cpu_ls = []
+    mem_ls = []
+    while True:
+        try:
+            cpu_percent = psutil.cpu_percent(interval=1)
+            mem_percent = psutil.virtual_memory().percent
+            cpu_ls.append(round(cpu_percent/100, 3))
+            mem_ls.append(round(mem_percent/100, 3))
+            time.sleep(1)
+        except Exception as e:
+            print(e)
+        finally:
+            print(f'CPU占用率:{cpu_ls},\n内存占用率:{mem_ls}')
